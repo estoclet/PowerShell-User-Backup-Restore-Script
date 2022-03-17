@@ -1,20 +1,19 @@
-## PowerShell User Data Backup & Restore Scripts
+## Scripts de sauvegarde et de restauration des données utilisateur PowerShell
 
-When I came into my current role in Desktop Support, we were using BATCH scripts to perform these tasks. However, I wanted to move them to PowerShell. 
 
-#### My goals for creating this were:
+#### Mes objectifs pour créer ceci étaient :
 
-1. Keep the process simple
-2. Provide seamless transition for my team
-3. Backup and Restore the same information as before
+1. Gardez le processus simple
+2. Assurer une transition fluide pour mon équipe
+3. Sauvegardez et restaurez les mêmes informations qu'avant
 
-#### What does the script backup and restore:
+#### Qu'est-ce que le script sauvegarde et restaure :
 
-1. All user data (Desktop, Documents, Downloads, Favorites, Pictures)
-2. Browser data from Google Chrome and Firefox
-3. Network printer information and Mapped Network drives
+1. Toutes les données utilisateur (Bureau, Documents, Téléchargements, Favoris, Images)
+2. Données du navigateur de Google Chrome et Firefox
+3. Informations sur l'imprimante réseau et lecteurs réseau mappés
 
-Code snippet:
+Extrait de code:
 
 ```PowerShell
 #region DeclaringDataBackupSources
@@ -29,11 +28,11 @@ $folder = "Desktop",
 #endregion DeclaringDataBackupSources
 ```
 
-#### What's been added
+#### Ce qui a été ajouté
 
-I added a little piece to the backup script to clear all browser cache to allow the backup time to decrease.
+J'ai ajouté un petit morceau au script de sauvegarde pour effacer tout le cache du navigateur afin de permettre au temps de sauvegarde de diminuer.
 
-Here is a snippet of that code:
+Voici un extrait de ce code :
 
 ```Power
 ##region CacheFolderDeletion Variables (Currently supports Chrome and Firefox)
@@ -53,17 +52,17 @@ Get-ChildItem -Path $delete | Remove-Item -Verbose -Recurse
 ##endregion
 ```
 
-The script has been tested on Windows 7 and Windows 10 and is 100% working.
+Le script a été testé sur Windows 7 et Windows 10 et fonctionne à 100 %.
 
-#### Variables to setup
+#### Variables à configurer
 
-For the Backup script:
+Pour le script de sauvegarde :
 
 ```PowerShell
 $destination
 ```
 
-For the Restore script:
+Pour le script de restauration :
 
 ```PowerShell
 $source
